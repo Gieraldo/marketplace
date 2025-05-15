@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Season Bites x Savoryblish</title>
+  <link rel="icon" href="logo.jpg" type="image/jpg" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header class="bg-pink text-white text-center py-3">
+  <h1 class="fw-bold">Season Bites x Savoryblish</h1>
+  <p class="bg-pink">Savory In Every Season</p>
+</header>
+
+<!-- Tombol Keranjang -->
+<button class="btn btn-dark cart-btn" onclick="tampilkanKeranjang()">
+  🛒 Keranjang (<span id="jumlahKeranjang">0</span>)
+</button>
+
+<main class="container my-5">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <!-- Produk -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="wonton.jpg" class="card-img-top" alt="Wonton Chili Oil" loading="lazy">
+        <div class="card-body text-center">
+          <h5 class="card-title">Wonton Chili Oil</h5>
+          <p class="card-text">Rp15.000</p>
+          <button class="btn btn-success" onclick="tambahKeranjang('Wonton Chili Oil', 15000)">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="kimbab.jpg" class="card-img-top" alt="Kimbab Sushi Korean Sauce" loading="lazy">
+        <div class="card-body text-center">
+          <h5 class="card-title">Kimbab Sushi Korean Sauce</h5>
+          <p class="card-text">Rp10.000</p>
+          <button class="btn btn-success" onclick="tambahKeranjang('Kimbab Sushi Korean Sauce', 10000)">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="nasicokot.jpeg" class="card-img-top" alt="Nasi Cokot" loading="lazy">
+        <div class="card-body text-center">
+          <h5 class="card-title">Nasi Cokot</h5>
+          <p class="card-text">Rp7.000</p>
+          <button class="btn btn-success" onclick="tambahKeranjang('Nasi Cokot', 7000)">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Modal Keranjang -->
+<div class="modal fade" id="modalKeranjang" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Keranjang Belanja</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+      </div>
+      <div class="modal-body">
+        <ul id="daftarKeranjang" class="list-group mb-3"></ul>
+        <h6>Total: <span id="totalHarga">Rp0</span></h6>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" onclick="checkout()">Bayar Sekarang</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal QRIS -->
+<div class="modal fade" id="modalQRIS" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title">Pembayaran via QRIS</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+      </div>
+      <div class="modal-body">
+        <img src="qris.jpeg" alt="QRIS" class="img-fluid mb-3" />
+        <p>Total pembayaran: <span id="totalQRIS"></span></p>
+        <p>Silakan scan QR untuk membayar.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="selesaiBayar()">Selesai Bayar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Transfer -->
+<div class="modal fade" id="modalTransfer" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center">
+        <div class="modal-header">
+          <h5 class="modal-title">Pembayaran via Transfer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <p>Total pembayaran: <span id="totalTransfer"></span></p>
+          <p>Silakan transfer ke rekening berikut:</p>
+          <div class="bg-light p-3 rounded">
+            <p class="mb-1 fw-bold">BRI - 038501071372507</p>
+            <p>a.n Livio Tri Gieraldo</p>
+            <p class="mb-1 fw-bold">MANDIRI - </p>
+            <p>a.n Livio Tri Gieraldo</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="selesaiBayar()">Selesai Bayar</button>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+<footer class="bg-pink text-white text-center py-3 mt-5">
+  <p class="mb-0">&copy; 2025 Season Bites</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+let keranjang = [];
+let namaPembeli = '';
+
+function tambahKeranjang(nama, harga) {
+  const index = keranjang.findIndex(item => item.nama === nama);
+  if (index !== -1) {
+    keranjang[index].jumlah += 1;
+  } else {
+    keranjang.push({ nama, harga, jumlah: 1 });
+  }
+  updateJumlahKeranjang();
+  Swal.fire({
+    icon: 'success',
+    title: 'Berhasil!',
+    text: `${nama} ditambahkan ke keranjang.`,
+    timer: 1500,
+    showConfirmButton: false
+  });
+}
+
+function updateJumlahKeranjang() {
+  const totalItem = keranjang.reduce((sum, item) => sum + item.jumlah, 0);
+  document.getElementById('jumlahKeranjang').textContent = totalItem;
+}
+
+function tampilkanKeranjang() {
+  const list = document.getElementById('daftarKeranjang');
+  list.innerHTML = '';
+  let total = 0;
+
+  keranjang.forEach((item, index) => {
+    total += item.harga * item.jumlah;
+    const li = document.createElement('li');
+    li.className = 'list-group-item';
+    li.innerHTML = `
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <div>
+          ${item.nama} x${item.jumlah}
+          <span class="text-muted">Rp${(item.harga * item.jumlah).toLocaleString('id-ID')}</span>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-sm btn-secondary" onclick="kurangiItem(${index})">−</button>
+          <button class="btn btn-sm btn-secondary" onclick="tambahItem(${index})">+</button>
+          <button class="btn btn-sm btn-danger" onclick="hapusItem(${index})">🗑</button>
+        </div>
+      </div>
+    `;
+    list.appendChild(li);
+  });
+
+  document.getElementById('totalHarga').textContent = `Rp${total.toLocaleString('id-ID')}`;
+  const modalKeranjang = new bootstrap.Modal(document.getElementById('modalKeranjang'));
+  modalKeranjang.show();
+}
+
+function hapusItem(index) {
+  keranjang.splice(index, 1);
+  updateJumlahKeranjang();
+  tampilkanKeranjang();
+}
+
+function tambahItem(index) {
+  keranjang[index].jumlah += 1;
+  updateJumlahKeranjang();
+  tampilkanKeranjang();
+}
+
+function kurangiItem(index) {
+  if (keranjang[index].jumlah > 1) {
+    keranjang[index].jumlah -= 1;
+  } else {
+    keranjang.splice(index, 1);
+  }
+  updateJumlahKeranjang();
+  tampilkanKeranjang();
+}
+
+function checkout() {
+  const total = keranjang.reduce((sum, item) => sum + item.harga * item.jumlah, 0);
+  if (total === 0) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Keranjang kosong',
+      text: 'Silakan tambahkan produk terlebih dahulu.',
+    });
+    return;
+  }
+
+  const modalKeranjang = bootstrap.Modal.getInstance(document.getElementById('modalKeranjang'));
+  if (modalKeranjang) modalKeranjang.hide();
+
+  setTimeout(() => {
+    Swal.fire({
+      title: 'Nama Pembeli',
+      input: 'text',
+      inputLabel: 'Opsional (boleh dikosongkan)',
+      inputPlaceholder: 'Masukkan nama Anda',
+      showCancelButton: true,
+      confirmButtonText: 'Lanjut Bayar',
+      cancelButtonText: 'Batal',
+    }).then(result => {
+      if (result.isConfirmed) {
+        namaPembeli = result.value || '';
+        // Pilihan metode pembayaran
+        Swal.fire({
+          title: 'Pilih Metode Pembayaran',
+          showCancelButton: true,
+          confirmButtonText: 'QRIS',
+          cancelButtonText: 'Transfer Bank',
+          icon: 'question'
+        }).then(res => {
+          if (res.isConfirmed) {
+            document.getElementById('totalQRIS').textContent = `Rp${total.toLocaleString('id-ID')}`;
+            new bootstrap.Modal(document.getElementById('modalQRIS')).show();
+          } else if (res.dismiss === Swal.DismissReason.cancel) {
+            document.getElementById('totalTransfer').textContent = `Rp${total.toLocaleString('id-ID')}`;
+            new bootstrap.Modal(document.getElementById('modalTransfer')).show();
+          }
+        });
+      }
+    });
+  }, 300);
+}
+
+
+function selesaiBayar() {
+  const total = keranjang.reduce((sum, item) => sum + item.harga * item.jumlah, 0);
+  let pesan = `Halo Season Bites! Saya telah memesan:\n`;
+  keranjang.forEach(item => {
+    pesan += `- ${item.nama} x${item.jumlah} = Rp${(item.harga * item.jumlah).toLocaleString('id-ID')}\n`;
+  });
+  pesan += `\nTotal: Rp${total.toLocaleString('id-ID')}`;
+  if (namaPembeli) {
+    pesan += `\nNama: ${namaPembeli}`;
+  }
+
+  const nomorWA = '6289610326146';
+  const linkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+
+  cetakStruk(() => {
+    window.open(linkWA, '_blank');
+  });
+
+  bootstrap.Modal.getInstance(document.getElementById('modalQRIS')).hide();
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Pembayaran selesai!',
+    text: 'Struk telah diunduh. Redirect ke WhatsApp...',
+    timer: 2000,
+    showConfirmButton: false
+  });
+
+  keranjang = [];
+  updateJumlahKeranjang();
+}
+
+function cetakStruk(callback) {
+  const total = keranjang.reduce((sum, item) => sum + item.harga * item.jumlah, 0);
+  const tanggal = new Date().toLocaleString('id-ID');
+
+  let isiStruk = `
+    <div id="strukArea" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 30px; max-width: 400px; margin: auto; color: #333;">
+      <div style="text-align:center; border-bottom: 2px solid #ffc107; padding-bottom: 15px; margin-bottom: 20px;">
+        <img src="logo.jpg" alt="Logo Season Bites" style="width: 90px; margin-bottom: 10px;">
+        <h1 style="margin: 0; color: #d48806;">Season Bites</h1>
+        <p style="margin: 0; font-style: italic; color: #666;">Savory In Every Season</p>
+        <p style="font-size: 0.85rem; color: #999; margin-top: 5px;">${tanggal}</p>
+      </div>
+
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+        <thead>
+          <tr style="border-bottom: 2px solid #ffc107;">
+            <th style="text-align:left; padding: 8px 0;">Produk</th>
+            <th style="text-align:center; padding: 8px 0; width: 60px;">Jumlah</th>
+            <th style="text-align:right; padding: 8px 0; width: 100px;">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  keranjang.forEach(item => {
+    isiStruk += `
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: 6px 0;">${item.nama}</td>
+        <td style="text-align:center;">${item.jumlah}</td>
+        <td style="text-align:right;">Rp${(item.harga * item.jumlah).toLocaleString('id-ID')}</td>
+      </tr>
+    `;
+  });
+
+  isiStruk += `
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" style="padding-top: 15px; font-weight: bold; border-top: 2px solid #ffc107;">Total Bayar</td>
+            <td style="padding-top: 15px; font-weight: bold; text-align:right; border-top: 2px solid #ffc107;">Rp${total.toLocaleString('id-ID')}</td>
+          </tr>
+          ${namaPembeli ? `<tr><td colspan="3" style="padding-top: 10px; font-style: italic; color: #555;">Nama Pembeli: <b>${namaPembeli}</b></td></tr>` : ''}
+        </tfoot>
+      </table>
+
+      <p style="text-align:center; margin-top: 30px; font-size: 0.9rem; color: #777;">
+        Terima kasih telah berbelanja di <strong>Season Bites</strong>!<br/>
+        Sampai jumpa kembali.
+      </p>
+    </div>
+  `;
+
+  const strukDiv = document.createElement('div');
+  strukDiv.innerHTML = isiStruk;
+  document.body.appendChild(strukDiv);
+
+  html2pdf().from(strukDiv).set({
+    margin: 0.5,
+    filename: `Struk_SeasonBites_${Date.now()}.pdf`,
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+  }).save().then(() => {
+    document.body.removeChild(strukDiv);
+    if (callback) callback();
+  });
+}
+
+</script>
+
+</body>
+</html>

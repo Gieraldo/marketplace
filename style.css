@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Quicksand&display=swap');
+
+/*Background Savory */
+.bg-pink {
+    background-color: #e854c0;
+  }
+/* Font setup */
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #fff5f7;
+  color: #4a4a4a;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #5e2c3e;
+}
+
+/* Header */
+header {
+  background-color: #ffe1ec;
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #5e2c3e;
+}
+
+/* Footer */
+footer {
+  background-color: #ffe1ec;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  color: #5e2c3e;
+}
+
+/* Card */
+.card {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.card-title {
+  color: #f38ba0;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.card-text {
+  color: #5e2c3e;
+}
+
+/* Button - Add to Cart */
+.btn-success {
+  background-color: #f38ba0;
+  border: none;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-success:hover {
+  background-color: #e46b85;
+}
+
+/* Cart Button (floating) */
+.cart-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: #f38ba0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.cart-btn:hover {
+  background-color: #e46b85;
+}
+
+/* Modal */
+.modal-content {
+  background-color: #fff0f5;
+  border-radius: 1rem;
+  border: 1px solid #f4a6bb;
+}
+
+.modal-header, .modal-footer {
+  background-color: #ffe1ec;
+}
+
+/* List Group Items */
+.list-group-item {
+  background-color: #fff7fa;
+  border-color: #f4a6bb;
+}
+
+/* Button Variants */
+.btn-primary {
+  background-color: #f38ba0;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #e46b85;
+}
+
+.btn-secondary {
+  background-color: #fddde6;
+  border: none;
+  color: #5e2c3e;
+}
+
+.btn-secondary:hover {
+  background-color: #f38ba0;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #ffc2d1;
+  border: none;
+  color: #a00028;
+}
+
+.btn-danger:hover {
+  background-color: #ff99ac;
+  color: #fff;
+}
+
+/* SweetAlert */
+.swal2-popup {
+  font-family: 'Quicksand', sans-serif;
+}
+
