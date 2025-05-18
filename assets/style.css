@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Quicksand&display=swap');
 
+/* Copy icon */
+.copy-icon {
+  border: none;
+  background: none;
+  color: #0d6efd;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding-left: 8px;
+}
+.copy-icon:hover {
+  color: #0a58ca;
+}
+
 /*Background Savory */
 .bg-pink {
     background-color: #e854c0;

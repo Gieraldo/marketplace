@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Season Bites x Savoryblish</title>
-  <link rel="icon" href="logo.jpg" type="image/jpg" />
+  <link rel="icon" href="/img/logo.jpg" type="image/jpg" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/style.css">
 
 </head>
 <body>
@@ -27,7 +27,7 @@
     <!-- Produk -->
     <div class="col">
       <div class="card h-100">
-        <img src="wonton.jpg" class="card-img-top" alt="Wonton Chili Oil" loading="lazy">
+        <img src="img/wonton.jpg" class="card-img-top" alt="Wonton Chili Oil" loading="lazy">
         <div class="card-body text-center">
           <h5 class="card-title">Wonton Chili Oil</h5>
           <p class="card-text">Rp15.000</p>
@@ -38,7 +38,7 @@
 
     <div class="col">
       <div class="card h-100">
-        <img src="kimbab.jpg" class="card-img-top" alt="Kimbab Sushi Korean Sauce" loading="lazy">
+        <img src="img/kimbab.jpg" class="card-img-top" alt="Kimbab Sushi Korean Sauce" loading="lazy">
         <div class="card-body text-center">
           <h5 class="card-title">Kimbab Sushi Korean Sauce</h5>
           <p class="card-text">Rp10.000</p>
@@ -49,14 +49,60 @@
 
     <div class="col">
       <div class="card h-100">
-        <img src="nasicokot.jpeg" class="card-img-top" alt="Nasi Cokot" loading="lazy">
+        <img src="img/dimsum.jpeg" class="card-img-top" alt="Dimsum" loading="lazy">
         <div class="card-body text-center">
-          <h5 class="card-title">Nasi Cokot</h5>
-          <p class="card-text">Rp7.000</p>
-          <button class="btn btn-success" onclick="tambahKeranjang('Nasi Cokot', 7000)">Tambah ke Keranjang</button>
+          <h5 class="card-title">Dimsum Mentai Premium</h5>
+          <p class="card-text">Rp28.000</p>
+          <button class="btn btn-success" onclick="tambahKeranjang('Dimsum', 28000)">Tambah ke Keranjang</button>
         </div>
       </div>
     </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="img/risol.jpg" class="card-img-top" alt="Risol Premium" loading="lazy">
+        <div class="card-body text-center">
+          <h5 class="card-title">Risol Mayo Premium</h5>
+          <p class="card-text">Rp15.000 (Isi 4 pcs)</p>
+          <button class="btn btn-success" onclick="tambahKeranjang('Dimsum', 28000)">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="img/pudding-mangga.jpg" class="card-img-top" alt="Pudding Mangga" loading="lazy">
+        <div class="card-body text-center">
+          <h5 class="card-title">Pudding Mangga</h5>
+          <p class="card-text">Rp10.000</p>
+          <button class="btn btn-success" onclick="tambahKeranjang('Pudding Mangga', 10000)">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="img/pudding-stroberi.jpg" class="card-img-top" alt="Pudding Strawberry" loading="lazy">
+        <div class="card-body text-center">
+          <h5 class="card-title">Pudding Strawberry</h5>
+          <p class="card-text">Rp10.000</p>
+          <button class="btn btn-success" onclick="tambahKeranjang('Pudding Strawberry', 10000)">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="img/pudding-coklat.jpg" class="card-img-top" alt="Pudding Coklat" loading="lazy">
+        <div class="card-body text-center">
+          <h5 class="card-title">Pudding Coklat Lotus</h5>
+          <p class="card-text">Rp10.000</p>
+          <button class="btn btn-success" onclick="tambahKeranjang('Pudding Coklat  ', 10000)">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </main>
 
@@ -88,7 +134,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
       </div>
       <div class="modal-body">
-        <img src="qris.jpeg" alt="QRIS" class="img-fluid mb-3" />
+        <img src="img/qris.jpeg" alt="QRIS" class="img-fluid mb-3" />
         <p>Total pembayaran: <span id="totalQRIS"></span></p>
         <p>Silakan scan QR untuk membayar.</p>
       </div>
@@ -101,28 +147,59 @@
 
 <!-- Modal Transfer -->
 <div class="modal fade" id="modalTransfer" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content text-center">
-        <div class="modal-header">
-          <h5 class="modal-title">Pembayaran via Transfer</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <div class="modal-body">
-          <p>Total pembayaran: <span id="totalTransfer"></span></p>
-          <p>Silakan transfer ke rekening berikut:</p>
-          <div class="bg-light p-3 rounded">
-            <p class="mb-1 fw-bold">BRI - 038501071372507</p>
-            <p>a.n Livio Tri Gieraldo</p>
-            <p class="mb-1 fw-bold">MANDIRI - </p>
-            <p>a.n Livio Tri Gieraldo</p>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title">Pembayaran via Transfer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+      </div>
+      <div class="modal-body">
+        <p>Total pembayaran: <span id="totalTransfer"></span></p>
+        <p>Silakan transfer ke rekening berikut:</p>
+        <div class="bg-light p-3 rounded text-start">
+          <!-- Rekening BRI -->
+          <div class="mb-3">
+            <div class="row align-items-center">
+              <div class="col-sm-4 fw-bold">BRI</div>
+              <div class="col-sm-6">
+                <span id="rekBRI">038501071372507</span>
+              </div>
+              <div class="col-sm-2 text-end">
+                <button class="btn btn-sm btn-outline-primary" onclick="salinRekening('rekBRI')" title="Salin">📋</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 ps-sm-4">
+                <small>a.n Livio Tri Gieraldo</small>
+              </div>
+            </div>
+          </div>
+          <!-- Rekening Mandiri -->
+          <div>
+            <div class="row align-items-center">
+              <div class="col-sm-4 fw-bold">MANDIRI</div>
+              <div class="col-sm-6">
+                <span id="rekMandiri">1670003024063</span>
+              </div>
+              <div class="col-sm-2 text-end">
+                <button class="btn btn-sm btn-outline-primary" onclick="salinRekening('rekMandiri')" title="Salin">📋</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 ps-sm-4">
+                <small>a.n Dika Damayanti P</small>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" onclick="selesaiBayar()">Selesai Bayar</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="selesaiBayar()">Selesai Bayar</button>
       </div>
     </div>
-  </div>  
+  </div>
+</div>
+
 
 <footer class="bg-pink text-white text-center py-3 mt-5">
   <p class="mb-0">&copy; 2025 Season Bites</p>
@@ -152,6 +229,27 @@ function tambahKeranjang(nama, harga) {
     showConfirmButton: false
   });
 }
+
+function salinRekening(idSpan) {
+  const text = document.getElementById(idSpan).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    Swal.fire({
+      icon: 'success',
+      title: 'Disalin!',
+      text: `Nomor rekening ${text} telah disalin.`,
+      timer: 1500,
+      showConfirmButton: false
+    });
+  }).catch(err => {
+    console.error('Gagal menyalin:', err);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops!',
+      text: 'Gagal menyalin nomor rekening.',
+    });
+  });
+}
+
 
 function updateJumlahKeranjang() {
   const totalItem = keranjang.reduce((sum, item) => sum + item.jumlah, 0);
